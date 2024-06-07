@@ -1,29 +1,58 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,800;1,800&display=swap');
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+  --foreground-rgb: 78, 54, 41;
+  --borders-rgb: 124, 103, 78;
+  --background-rgb: 254,251,236;
+  --headings-text-color: 140, 157, 248;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+  /* Define global text styles as variables */
+  --headings-font-family: 'Roboto Mono', monospace;
+  --font-family: 'Roboto Mono', monospace;
+  --font-size: 16px;
+  --line-height: 1.6;
+  --font-weight: 400;
+  --text-color: rgb(var(--foreground-rgb));
+
+  --button-font: 'Roboto Mono', monospace;
+  --button-color: 251, 241, 188;
+  --button-color-hover: 188, 198, 251;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: rgb(var(--background-rgb));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  margin: 0;
+
+  color: var(--text-color);
+  /* Apply global text styles */
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  font-weight: var(--font-weight);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--headings-font-family);
+  color: var(--headings-text-color);
+  font-size: 4rem;
+  line-height: 1.2;
+}
+
+p {
+  font-family: var(--font-family);
+  color: var(--text-color);
+  line-height: var(--line-height);
+  padding-left: 200px;
+  padding-right: 200px;
+  padding-bottom: 25px;
 }
 
 @layer utilities {
