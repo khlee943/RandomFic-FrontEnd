@@ -20,7 +20,8 @@ const UserInterface: React.FC = () => {
       setFanfic(response.data);
       setError(null); // Clear error if request is successful
     } catch (error) {
-      setError('Error fetching fanfic. Please try again.'); // Set error message
+      console.error('Error fetching fanfic:', error);
+      setError(traceback.print_exc());
     }
   };
 
