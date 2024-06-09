@@ -10,6 +10,7 @@ __Deployment__
 For development:
 
 + Clone repository
++ Run npm i
 + Configure .env file
 + Run npm run dev
 + Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
