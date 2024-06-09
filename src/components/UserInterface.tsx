@@ -21,7 +21,7 @@ const UserInterface: React.FC = () => {
       setError(null); // Clear error if request is successful
     } catch (error) {
       console.error('Error fetching fanfic:', error);
-      setError(traceback.print_exc());
+      setError(error instanceof Error ? error.message : 'Unknown error');
     }
   };
 
