@@ -7,6 +7,7 @@ export interface Fanfic {
     fandom: string;
     url: string;
     kudos: string;
+    summary: string;
     average_sentiment: number;
 }
 
@@ -20,10 +21,10 @@ const FanficComponent: React.FC<FanficComponentProps> = ({ fanfic }) => {
     return (
         <div className="fanfic">
             <h2>{fanfic.title}</h2>
-            <p><strong>Author:</strong> {fanfic.author}</p>
-            <p><strong>Fandom:</strong> {fanfic.fandom}</p>
-            <p><strong>Kudos:</strong> {fanfic.kudos}</p>
-            <p><strong>Average Sentiment:</strong> {fanfic.average_sentiment}</p>
+            <p><strong>Author</strong>: {fanfic.author}</p>
+            <p><strong>Fandom</strong>: {fanfic.fandom}</p>
+            <p><strong>Kudos</strong>: {fanfic.kudos}</p>
+            <p><strong>Average Sentiment</strong>: {fanfic.average_sentiment}</p>
             <a href={fanfic.url} target="_blank" rel="noopener noreferrer">Read more</a>
         </div>
     );

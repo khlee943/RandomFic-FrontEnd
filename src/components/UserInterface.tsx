@@ -1,7 +1,8 @@
-import React, { useState } from 'react'; // Importing necessary hooks from React
-import axios from 'axios'; // Importing axios for making HTTP requests
-import FanficComponent from './FanficComponent'; // Importing the FanficComponent to display fanfic details
-import { Fanfic } from './FanficComponent'; // Importing the Fanfic interface for TypeScript type-checking
+import React, { useState } from 'react';
+import axios from 'axios'; // axios is for making HTTP requests
+import { useRouter } from 'next/router';
+import FanficComponent from './FanficComponent';
+import { Fanfic } from './FanficComponent';
 import { BASE_URL } from '../utils/config'; // Importing the base URL for the API from a config file
 
 // Define the UserInterface component as a functional React component
@@ -10,6 +11,7 @@ const UserInterface: React.FC = () => {
   const [fanfic, setFanfic] = useState<Fanfic | null>(null);
   const [backgroundColor, setBackgroundColor] = useState<string>('#ffffff'); // Default background color
   const [error, setError] = useState<string | null>(null); // State variable for error message
+  const router = useRouter();
 
   const colors = ['#ECB0A1', '#F2C4C6', '#FEF462', '#B8ECA1', '#A1DEEC', '#A1B8EC', '#FADFCE'];
 
@@ -21,7 +23,7 @@ const UserInterface: React.FC = () => {
       setError(null); // Clear error if request is successful
     } catch (error) {
       console.error('Error fetching fanfic:', error);
-      setError(traceback.print_exc());
+      setError(error instanceof Error ? error.message : 'Unknown error');
     }
   };
 
@@ -38,50 +40,60 @@ const UserInterface: React.FC = () => {
     setRandomBackgroundColor();
   };
 
+  const navigateToRecommend = () => {
+    router.push('/recommend'); // Use router.push to navigate to /recommend route
+  };
+
    return (
     <div className="container">
-        <div className="user-interface">
+      <div className="user-interface">
+        <div className="flex justify-center mb-6">
+          <h1 style={{ color: '#8c9df8' }}>Random Fanfic Generator</h1>
+        </div>
+        <div className="flex justify-center mb-6">
+          <p>
+            {`Hello! This is a little project I made to explore webscraping, sentiment analysis,
+              web development, and the fanfic community. I only pulled the top 10 most kudosed fanfics from
+              fandoms of over 10,000 fanfics (total of around 2.8k fics), but I hope to eventually expand my range.
+              If you have a specific fic you want in the database, feel free to email me its details or a link to it.
+              Happy reading!`}
+          </p>
+        </div>
+        <div className="button-container">
           <div className="flex justify-center mb-6">
-            <h1 style={{ color: '#8c9df8' }}>Random Fanfic Generator</h1>
-          </div>
-          <div className="flex justify-center mb-6">
-            <p>
-                {`Hello! This is a little project I made to explore webscraping, sentiment analysis,
-                web development, and the fanfic community. I only pulled the top 10 most kudosed fanfics from
-                fandoms of over 10,000 fanfics (total of around 2.8k fics), but I hope to eventually expand my range.
-                If you have a specific fic you want in the database, feel free to email me its details or a link to it.
-                Happy reading!`}
-            </p>
-          </div>
-          <div className="flex justify-center mb-6">
-            <button onClick={handleGetNewFanfic} className='custom-button'>
+            <button onClick={handleGetNewFanfic} className="custom-button">
               Get New Fanfic
             </button>
           </div>
-          <div className="fanfic-box" style={{ backgroundColor, color:'#4E3629' }}>
-            <div className="fanfic-content">
-                {error ? (
-                  <div>
-                      <h2>Title</h2>
-                      <p>{error}</p>
-                  </div>
-                ) : fanfic ? (
-                  <FanficComponent fanfic={fanfic} />
-                ) : (
-                  <p>Click to start generating.</p>
-                )}
-            </div>
+          <div className="flex justify-end mt-4 mr-4 absolute top-0 right-0">
+            <button onClick={navigateToRecommend} className="navigation-button">
+              Recommend Fanfic
+            </button>
           </div>
         </div>
-    <footer className="footer">
-        <div className="footer-content">
-            <p>&copy; 2024 Kathryn Lee</p>
+        <div className="fanfic-box" style={{ backgroundColor, color: '#4E3629' }}>
+          <div className="fanfic-content">
+            {error ? (
+              <div>
+                <h2>Title</h2>
+                <p>{error}</p>
+              </div>
+            ) : fanfic ? (
+              <FanficComponent fanfic={fanfic} />
+            ) : (
+              <p>Click to start generating.</p>
+            )}
+          </div>
         </div>
-    </footer>
+      </div>
+          <footer className="footer">
+            <div className="footer-content">
+              <p>&copy; 2024 Kathryn Lee</p>
+            </div>
+          </footer>
     </div>
   );
 };
-
 
 // Export the UserInterface component as the default export
 export default UserInterface;

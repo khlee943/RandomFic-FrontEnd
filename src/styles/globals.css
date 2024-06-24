@@ -28,8 +28,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 60vh;
+  min-height: 100vh;
   margin: 0;
+  width: 100%;
 
   color: var(--text-color);
   /* Apply global text styles */
@@ -44,6 +45,8 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--headings-text-color);
   font-size: 4rem;
   line-height: 1.2;
+  width: 100%;
+  text-align: center;
 }
 
 p {
