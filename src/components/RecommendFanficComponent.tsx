@@ -3,6 +3,8 @@ import axios from 'axios'; // axios is for making HTTP requests
 import { useRouter } from 'next/router';
 import { Fanfic } from './FanficComponent';
 import RecommendationComponent from './RecComponent';
+import FanficComponent from './FanficComponent';
+
 import { BASE_URL } from '../utils/config'; // Importing the base URL for the API from a config file
 
 // Define the UserInterface component as a functional React component
@@ -23,10 +25,12 @@ const RecommendFanficComponent: React.FC = () => {
   // function that fetches the recommendation when submitted
   const handleSubmit = async () => {
     try {
+//       const response = await axios.get(`${BASE_URL}/random_fanfic`);
       const response = await axios.post(`${BASE_URL}/chat`, { message: description });
-      setRecommendation(response.data.response);
+      setRecommendation(response.data);
       setRandomBackgroundColor();
       setError(null);
+//       setError(response.data.response);
     } catch (err) {
       console.error('Error fetching recommendation:', err);
       setRandomBackgroundColor();
@@ -78,7 +82,16 @@ const RecommendFanficComponent: React.FC = () => {
         </div>
         <div className="fanfic-box" style={{ backgroundColor, color: '#4E3629' }}>
           <div className="fanfic-content">
-            <RecommendationComponent recommendation={recommendation} error={error} />
+            {error ? (
+              <div>
+                <h2>Title</h2>
+                <p>{error}</p>
+              </div>
+            ) : recommendation ? (
+              <FanficComponent fanfic={recommendation} />
+            ) : (
+              <p>Click to start generating.</p>
+            )}
           </div>
         </div>
       </div>
@@ -91,5 +104,6 @@ const RecommendFanficComponent: React.FC = () => {
   );
 };
 
-// Export the UserInterface component as the default export
+// <RecommendationComponent recommendation={recommendation} />
+// Export the RecommendFanficComponent component as the default export
 export default RecommendFanficComponent;
