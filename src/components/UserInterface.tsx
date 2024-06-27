@@ -54,7 +54,7 @@ const UserInterface: React.FC = () => {
           <p>
             {`Hello! This is a little project I made to explore webscraping, sentiment analysis,
               web development, and the fanfic community. I only pulled the top 10 most kudosed fanfics from
-              fandoms of over 10,000 fanfics (total of around 2.8k fics), but I hope to eventually expand my range.
+              fandoms of over 5,000 fanfics on Ao3 (total of around 6.7k fics), but I hope to eventually expand my range.
               If you have a specific fic you want in the database, feel free to email me its details or a link to it.
               Happy reading!`}
           </p>

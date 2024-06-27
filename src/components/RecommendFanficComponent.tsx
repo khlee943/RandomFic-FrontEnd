@@ -56,8 +56,9 @@ const RecommendFanficComponent: React.FC = () => {
         </div>
         <div className="flex justify-center mb-6">
           <p>
-            {`This is a recommendation feature I added to allow people to describe and search specific fanfics they
-              wanted.`}
+            {`This is a recommendation feature I added that allows searching for specific types of fanfics.. Content from
+              fanfics was vectorized using TfidfVectorizer, and cosine similarity is used to find the vector most similar
+              to the submitted query.`}
           </p>
         </div>
         <div className="flex justify-center mb-6">
