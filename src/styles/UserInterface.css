@@ -6,13 +6,13 @@
     flex-direction: column;
     justify-content: flex-start; /* Align items to the start vertically */
     align-items: center; /* Center horizontally */
-    margin-top: 3vh; /* Push down 5% of viewport height */
+    margin-top: 3vh; /* Push down viewport height */
 }
 
 .fanfic-box {
     width: 400px; /* Set a fixed width for the box */
     padding: 20px;
-    border: 3px solid rgb(var(--borders-rgb));
+    border: 1.5px solid rgb(var(--borders-rgb));
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow-wrap: break-word; /* Allow long words to wrap within the box */
@@ -31,14 +31,119 @@
     font-size: 2rem;
 }
 
+/* Styling details of the loading icon from uiball.com/ldrs */
+ .hourglass {
+    --uib-size: 45px;
+    --uib-color: rgb(var(--hourglass-color));
+    --uib-speed: 1.75s;
+    --uib-bg-opacity: .1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: var(--uib-size);
+    width: var(--uib-size);
+    transform: rotate(45deg);
+    animation: rotate calc(var(--uib-speed) * 2) ease-in-out infinite;
+  }
+
+  .half {
+    --uib-half-size: calc(var(--uib-size) * 0.435);
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--uib-half-size);
+    height: var(--uib-half-size);
+    overflow: hidden;
+    isolation: isolate;
+
+    &:first-child {
+      top: 8.25%;
+      left: 8.25%;
+      border-radius: 50% 50% calc(var(--uib-size) / 15);
+    }
+
+    &:last-child {
+      bottom: 8.25%;
+      right: 8.25%;
+      transform: rotate(180deg);
+      align-self: flex-end;
+      border-radius: 50% 50% calc(var(--uib-size) / 15);
+
+      &::after {
+        animation-delay: calc(var(--uib-speed) * -1);
+      }
+    }
+
+    &::before {
+      content: '';
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: var(--uib-color);
+      opacity: var(--uib-bg-opacity);
+      transition: background-color 0.3s ease;
+    }
+
+    &::after {
+      content: '';
+      position: relative;
+      z-index: 1;
+      display: block;
+      background-color: var(--uib-color);
+      height: 100%;
+      transform: rotate(45deg) translate(-3%, 50%) scaleX(1.2);
+      width: 100%;
+      transform-origin: bottom right;
+      border-radius: 0 0 calc(var(--uib-size) / 20) 0;
+      animation: flow calc(var(--uib-speed) * 2) linear infinite both;
+      transition: background-color 0.3s ease;
+    }
+  }
+
+  @keyframes flow {
+    0% {
+      transform: rotate(45deg) translate(-3%, 50%) scaleX(1.2);
+    }
+    30% {
+      transform: rotate(45deg) translate(115%, 50%) scaleX(1.2);
+    }
+
+    30.001%,
+    50% {
+      transform: rotate(0deg) translate(-85%, -85%) scaleX(1);
+    }
+
+    80%,
+    100% {
+      transform: rotate(0deg) translate(0%, 0%) scaleX(1);
+    }
+  }
+
+  @keyframes rotate {
+    0%,
+    30% {
+      transform: rotate(45deg);
+    }
+
+    50%,
+    80% {
+      transform: rotate(225deg);
+    }
+
+    100% {
+      transform: rotate(405deg);
+    }
+  }
+
 .fanfic-content {
     position: relative; /* Ensure child elements can be positioned relative to this */
     padding: 20px;
-    border: 3px dashed rgb(var(--borders-rgb));
+    border: 2px dashed rgb(var(--borders-rgb));
     border-radius: 8px;
 }
-
-
 
 @keyframes wiggle {
     0%, 100% {
@@ -61,17 +166,18 @@
     box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2); /* Enhance the shadow effect */
 }
 
+/* Submit button*/
 .custom-button {
     font-family: var(--button-font);
     color: var(--text-color); /* Text color */
-    background-color: rgb(var(--button-color)); /* Background color */
-    border: 2px solid var(--text-color);
+    background-color: rgb(var(--button-color-deep));
+    border: 0px solid var(--text-color);
     padding: 10px 20px;
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Show cursor as pointer on hover */
-    display: block; /* Ensure button takes up entire width */
-    margin: 0 20px 20px 20px; /* order: top bottom left right */
-    transition: 300ms ease-in-out; /* Smoother transition */
+    border-radius: 500px;
+    cursor: pointer;
+    display: block;
+    margin: 0 20px 20px 20px;
+    transition: 300ms ease-in-out;
 }
 
 .custom-button:hover {
@@ -82,22 +188,38 @@
 
 .navigation-button {
     font-family: var(--button-font);
-    color: var(--text-color); /* Text color */
-    background-color: rgb(var(--button-color)); /* Background color */
-    border: 2px solid var(--text-color);
-    padding: 10px 20px;
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Show cursor as pointer on hover */
-    position: absolute; /* Position absolutely */
-    top: 20px; /* 20px from the top */
-    right: 20px; /* 20px from the right */
-    transition: 300ms ease-in-out; /* Smoother transition */
+    color: var(--text-color);
+    background-color: rgb(var(--button-color));
+    border: 0px solid var(--text-color);
+    padding: 10px 15px;
+    border-radius: 500px;
+    cursor: pointer;
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    transition: 300ms ease-in-out;
 }
 
 .navigation-button:hover {
     background-color: rgb(var(--button-color-hover)); /* Change background color on hover */
-    color: black;
-    /*transform: translateY(-15px) scale(1.1);*/
+}
+
+.feedback-form-button-random {
+    font-family: var(--button-font);
+    color: var(--text-color);
+    background-color: rgb(var(--button-color));
+    border: 0px solid var(--text-color);
+    padding: 8.5px 15px;
+    border-radius: 500px;
+    cursor: pointer;
+    position: absolute;
+    top: 16px;
+    right: 243px;
+    transition: 300ms ease-in-out;
+}
+
+.feedback-form-button-random:hover {
+    background-color: rgb(var(--button-color-hover));
 }
 
 .container {
@@ -106,6 +228,21 @@
     flex-direction: column;
     min-height: 100vh;
     width: 100%;
+    padding-top: 35px; /* This is where would I push down the User-Interface to make room for the header */
+}
+
+.header {
+  background-color: rgb(var(--button-color));
+  color: var(--text-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  width: 100%;
+  height: 70px;
+  position: absolute;
+  top: 0px;
+  box-sizing: border-box;
 }
 
 .footer {
@@ -128,4 +265,5 @@
 /*
 .user-interface * {
     outline: red dashed 1px;
-}*/
+}
+*/

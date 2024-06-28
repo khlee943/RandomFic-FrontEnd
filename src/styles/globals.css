@@ -4,6 +4,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,800;1,800&display=swap');
 
+@font-face {
+  font-family: 'BubblyFont';
+  src: url('../utils/Fanficfont-Regular.ttf') format('truetype');
+}
+
 :root {
   --foreground-rgb: 78, 54, 41;
   --borders-rgb: 124, 103, 78;
@@ -11,7 +16,7 @@
   --headings-text-color: 140, 157, 248;
 
   /* Define global text styles as variables */
-  --headings-font-family: 'Roboto Mono', monospace;
+  --headings-font-family: 'BubblyFont', sans-serif;
   --font-family: 'Roboto Mono', monospace;
   --font-size: 16px;
   --line-height: 1.6;
@@ -20,7 +25,9 @@
 
   --button-font: 'Roboto Mono', monospace;
   --button-color: 251, 241, 188;
+  --button-color-deep: 248, 231, 140;
   --button-color-hover: 188, 198, 251;
+  --hourglass-color: 232, 211, 100;
 }
 
 body {
@@ -43,7 +50,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--headings-font-family);
   color: var(--headings-text-color);
-  font-size: 4rem;
+  font-size: 4.5rem;
   line-height: 1.2;
   width: 100%;
   text-align: center;
